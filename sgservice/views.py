@@ -8,6 +8,7 @@ from tango.publisher.jsonrpc import JsonRpcPublisher, JRPC_ERROR
 # project
 from common.constants import *
 from models.base import *
+import json
 
 
 class JsonRpcService(JsonRpcPublisher):
@@ -29,7 +30,7 @@ class JsonRpcService(JsonRpcPublisher):
 
         if (id_order is None) | (isinstance(id_order, int) is False):
             wrong_order = json.loads(answer_template)
-            wrong_order["error"] = "Error! Wrong or empty order number!"
+            wrong_order["error"] = error_order_tpl
             return wrong_order
 
         answer = json.loads(answer_template)
